@@ -1,10 +1,11 @@
 'use client'
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Heart } from "lucide-react"
 import Link from "next/link"
-import toast from "react-hot-toast"
+import { FaHeart } from "react-icons/fa";
+import { useGetNotify } from "@/hooks/notify";
 
 const NewProducts = () => {
-
+    const notify = useGetNotify()
     const products = [
         {
             id: 1,
@@ -13,37 +14,47 @@ const NewProducts = () => {
             name: "Fudbolka va shim",
             decs: "Bolalar uchun baxorgi kiyim juda qulay va arzon narxlarda",
             price: 65000,
-            sanoq: 99
+            sanoq: 99,
+            isliked: false
         },
         {
-            id: 1,
+            id: 2,
             img: "https://images.uzum.uz/d2bblpd2lln4bo5djuag/original.jpg",
             categoryname: "Bolalar kyimlari",
             name: "Fudbolka va shim",
             decs: "Bolalar uchun baxorgi kiyim juda qulay va arzon narxlarda",
             price: 65000,
-            sanoq: 99
+            sanoq: 99,
+            isliked: true
+
         }, {
-            id: 1,
+            id: 3,
             img: "https://images.uzum.uz/d2bblpd2lln4bo5djuag/original.jpg",
             categoryname: "Bolalar kyimlari",
             name: "Fudbolka va shim",
             decs: "Bolalar uchun baxorgi kiyim juda qulay va arzon narxlarda",
             price: 65000,
-            sanoq: 99
+            sanoq: 99,
+            isliked: false
         }, {
-            id: 1,
+            id: 4,
             img: "https://images.uzum.uz/d2bblpd2lln4bo5djuag/original.jpg",
             categoryname: "Bolalar kyimlari",
             name: "Fudbolka va shim",
             decs: "Bolalar uchun baxorgi kiyim juda qulay va arzon narxlarda",
             price: 65000,
-            sanoq: 99
+            sanoq: 99,
+            isliked: true
         },
     ]
 
     const savat = () => {
-        toast.success("Maxsulot-savatga qo'shildi")
+        notify("ok", "Maxsulot-savatga qo'shildi")
+    }
+
+    const liked = (id) => {
+        console.log(id)
+        notify('ok', "sevimlilarga qo'shildi")
     }
 
     return (
@@ -56,8 +67,9 @@ const NewProducts = () => {
             <div className="mt-12 grid grid-cols-4 gap-6">
                 {
                     products?.map((item) => (
-                        <div className="border border-gray-300 p-6 rounded-xl" key={item.id}>
+                        <div className="border border-gray-300 p-6 rounded-xl relative" key={item.id}>
                             <img src={item.img} alt={item.name} className="mb-4 w-full h-[300px] object-cover  object-top rounded-xl" />
+                            <FaHeart onClick={() => liked(item.id)} className={`absolute top-7 right-8 ${item.isliked ? 'text-red-500' : "text-gray-400"} text-3xl cursor-pointer active:scale-90`} />
                             <p className="bg-gray-100 py-1 px-3 rounded-xs inline">{item.categoryname}</p>
                             <h2 className="text-2xl my-3">{item.name}</h2>
                             <p className="text-gray-700">{item.decs}</p>
