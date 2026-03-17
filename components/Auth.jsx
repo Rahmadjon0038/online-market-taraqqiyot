@@ -10,7 +10,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 600,
-  
+
     bgcolor: 'background.paper',
     boxShadow: 24,
     p: 4,
@@ -18,9 +18,20 @@ const style = {
 };
 
 export default function AuthModal({ children }) {
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    // ---- login malumotlarini yigish
+    const [phonenumber, setPhonenumber] = React.useState('')
+    const [password, setPassword] = React.useState('')
+
+    // ---- login malumotlarini yigish
+    const [firstname, setFirstname] = React.useState('')
+    const [lastname, setLastname] = React.useState('')
+
+
+
 
     const [tab, setTab] = React.useState(1)
     const tabs = [
@@ -39,10 +50,17 @@ export default function AuthModal({ children }) {
         setTab(tabid)
     }
 
-    const handleSumbit = (e) => {
+    const handleLogin = (e) => {
         e.preventDefault()
+        const logindata = { phonenumber, password }
+        console.log(logindata)
     }
 
+    const handleRegister = (e) => {
+        e.preventDefault()
+        const registerdata = { phonenumber, password, firstname, lastname }
+        console.log(registerdata)
+    }
 
 
     return (
@@ -55,7 +73,7 @@ export default function AuthModal({ children }) {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <form onSubmit={handleSumbit}>
+                    <div>
                         <div className='flex justify-between'>
                             <h1 className='text-2xl font-bold text-gray-500'>Hisobga kirish</h1>
                             <X onClick={handleClose} className=' text-gray-500' />
@@ -73,29 +91,50 @@ export default function AuthModal({ children }) {
 
                         {
                             tab == 1 ?
-
-                                <div>
+                                <form onSubmit={handleLogin}>
                                     <label className='block mt-6'>
                                         <p className='mb-2'>Telefon raqam</p>
-                                        <input className='p-3 rounded-xl w-full border-2 border-gray-300 outline-none focus:border-green-500' type="text" placeholder='+998 99 777 88 12' />
+                                        <input onChange={(e) => setPhonenumber(e.target.value)} className='p-3 rounded-xl w-full border-2 border-gray-300 outline-none focus:border-green-500' type="text" placeholder='+998 99 777 88 12' />
                                     </label>
                                     <label className='block mt-6'>
                                         <p className='mb-2'>Parol</p>
-                                        <input className='p-3 rounded-xl w-full border-2 border-gray-300 outline-none focus:border-green-500' type="text" placeholder='parol' />
+                                        <input onChange={(e) => setPassword(e.target.value)} className='p-3 rounded-xl w-full border-2 border-gray-300 outline-none focus:border-green-500' type="text" placeholder='parol' />
                                     </label>
                                     <button className='bg-green-600 active:bg-green-500 text-white w-full mt-6 p-3 rounded-xl '>Tizimga kirish</button>
 
-                                </div>
+                                </form>
                                 : ''
                         }
 
 
                         {
-                            tab == 2 ? <div>2</div> : ''
+                            tab == 2 ?
+
+                                <form onSubmit={handleRegister}>
+                                    <label className='block mt-6'>
+                                        <p className='mb-2'>Ism</p>
+                                        <input onChange={(e) => setFirstname(e.target.value)} className='p-3 rounded-xl w-full border-2 border-gray-300 outline-none focus:border-green-500' type="text" placeholder='Ismingizini kiriting' />
+                                    </label>
+                                    <label className='block mt-6'>
+                                        <p className='mb-2'>Familiya</p>
+                                        <input onChange={(e) => setLastname(e.target.value)} className='p-3 rounded-xl w-full border-2 border-gray-300 outline-none focus:border-green-500' type="text" placeholder='Familiyangizni kiriting' />
+                                    </label>
+                                    <label className='block mt-6'>
+                                        <p className='mb-2'>Telefon raqam</p>
+                                        <input onChange={(e) => setPhonenumber(e.target.value)} className='p-3 rounded-xl w-full border-2 border-gray-300 outline-none focus:border-green-500' type="text" placeholder='+998 99 777 88 12' />
+                                    </label>
+                                    <label className='block mt-6'>
+                                        <p className='mb-2'>Parol</p>
+                                        <input onChange={(e) => setPassword(e.target.value)} className='p-3 rounded-xl w-full border-2 border-gray-300 outline-none focus:border-green-500' type="text" placeholder='parol' />
+                                    </label>
+                                    <button className='bg-green-600 active:bg-green-500 text-white w-full mt-6 p-3 rounded-xl '>Ro'yhatdan o'tish</button>
+
+                                </form>
+                                : ''
                         }
 
 
-                    </form>
+                    </div>
 
                 </Box>
             </Modal>
