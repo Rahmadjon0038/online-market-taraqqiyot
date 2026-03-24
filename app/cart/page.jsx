@@ -1,6 +1,7 @@
 'use client'
 
 import { Minus, Plus, Trash, Trash2 } from "lucide-react"
+import Link from "next/link"
 import { useState } from "react"
 
 const page = () => {
@@ -68,19 +69,31 @@ const page = () => {
                 <div className="p-4 flex-1">
                     <div className="flex-1  p-4 border border-gray-300 rounded-xl">
                         <h1 className="text-xl font-bold mb-4">Buyurtma xulosasi</h1>
-                        <hr />
+                        <div className="h-[1px] w-full bg-gray-200"></div>
                         <div className="flex justify-between mt-4">
                             <p>Jami summa</p>
-                            <b>bepul</b>
+                            <b>220000 so'm</b>
                         </div>
                         <div className="flex justify-between mt-4">
-                            <p>Jami summa</p>
-                            <b>bepul</b>
-                        </div> <div className="flex justify-between mt-4">
-                            <p>Jami summa</p>
-                            <b>bepul</b>
+                            <p>yetkazib berish</p>
+                            <b>25000 so'm</b>
                         </div>
-                        <hr />
+                        <div className="h-[1px] mt-4 w-full bg-gray-200"></div>
+
+                        <div className="mt-4 flex justify-between items-center">
+                            <h1 className="text-2xl font-bold">Jami</h1>
+                            <h2 className="text-xl text-green-600 font-bold">245000</h2>
+                        </div>
+                        <Link href={'/checkout'}>
+                        <button className="py-3 px-6 rounded-xl  active:scale-90 w-full mt-3 bg-green-600 text-white ">Rasmiylashtirish</button></Link>
+                        <Link href={'/products'}>
+                            <button className="py-3 px-6 rounded-xl  active:scale-90 w-full mt-3 bg-gray-100">Haridni davom ettirish</button>
+                        </Link>
+
+                        <div className="p-4 rounded-xl bg-[#F7FAF6] mt-6">
+                            <p className="text-[14px] "><b className="text-green-600">Bepul yetkazib berish </b> <br /> $50 dan yuqori buyurtmalar uchun</p>
+                        </div>
+
                     </div>
                 </div>
             </div>

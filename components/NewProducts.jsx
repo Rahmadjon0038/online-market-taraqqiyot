@@ -4,49 +4,9 @@ import Link from "next/link"
 import { FaHeart } from "react-icons/fa";
 import { useGetNotify } from "@/hooks/notify";
 
-const NewProducts = () => {
+const NewProducts = ({products}) => {
     const notify = useGetNotify()
-    const products = [
-        {
-            id: 1,
-            img: "https://images.uzum.uz/d2bblpd2lln4bo5djuag/original.jpg",
-            categoryname: "Bolalar kyimlari",
-            name: "Fudbolka va shim",
-            decs: "Bolalar uchun baxorgi kiyim juda qulay va arzon narxlarda",
-            price: 65000,
-            sanoq: 99,
-            isliked: false
-        },
-        {
-            id: 2,
-            img: "https://images.uzum.uz/d2bblpd2lln4bo5djuag/original.jpg",
-            categoryname: "Bolalar kyimlari",
-            name: "Fudbolka va shim",
-            decs: "Bolalar uchun baxorgi kiyim juda qulay va arzon narxlarda",
-            price: 65000,
-            sanoq: 99,
-            isliked: true
-
-        }, {
-            id: 3,
-            img: "https://images.uzum.uz/d2bblpd2lln4bo5djuag/original.jpg",
-            categoryname: "Bolalar kyimlari",
-            name: "Fudbolka va shim",
-            decs: "Bolalar uchun baxorgi kiyim juda qulay va arzon narxlarda",
-            price: 65000,
-            sanoq: 99,
-            isliked: false
-        }, {
-            id: 4,
-            img: "https://images.uzum.uz/d2bblpd2lln4bo5djuag/original.jpg",
-            categoryname: "Bolalar kyimlari",
-            name: "Fudbolka va shim",
-            decs: "Bolalar uchun baxorgi kiyim juda qulay va arzon narxlarda",
-            price: 65000,
-            sanoq: 99,
-            isliked: true
-        },
-    ]
+  
 
     const savat = () => {
         notify("ok", "Maxsulot-savatga qo'shildi")
@@ -58,11 +18,7 @@ const NewProducts = () => {
     }
 
     return (
-        <div className="py-24">
-            <div className="flex justify-between">
-                <h1 className="text-3xl font-bold">Tavsiya etilgan mahsulotlar</h1>
-                <Link href={'/products'} className="flex  items-center gap-2 text-green-700 hover:text-green-500">Barchasini ko'rish <ArrowRight /></Link>
-            </div>
+        <div className="py-12">
 
             <div className="mt-12 grid grid-cols-4 gap-6">
                 {
