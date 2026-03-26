@@ -1,6 +1,22 @@
+'use client'
 import Link from "next/link"
+import { useState } from "react"
 
 const page = () => {
+    const [activeButton, setActiveButton] = useState(0)
+
+    const buttons = [
+        {
+            id: 1,
+            text: "Karta orqali"
+        },
+        {
+            id: 2,
+            text: "Naxt pul orqali yetkazib berish punkitida"
+        },
+    ]
+
+
     return (
         <div className="mt-24">
             <h1 className="text-3xl ml-6 font-bold">Rasmiylashtirish</h1>
@@ -16,10 +32,17 @@ const page = () => {
 
                     <div className="border p-4 rounded-xl border-gray-300">
                         <h1 className="text-2xl">To'lov usulini tanlang</h1>
+
                         <div>
-                            <h1 className="border border-gray-300 p-4 mt-4 rounded-xl cursor-pointer active:bg-green-500 active:text-white text-xl bg-gray-100">Karta orqali</h1>
-                            <h1 className="border border-gray-300 p-4 mt-4 rounded-xl cursor-pointer active:bg-green-500 active:text-white text-xl bg-gray-100">Naxt pul orqali yetkazib berish punkitida</h1>
+                            {
+                                buttons.map((item) => (
+                                    <h1 onClick={() => setActiveButton(item.id)} className={`${item.id == activeButton ? 'bg-green-500 text-white' : ""} border border-gray-300 p-4 mt-4 rounded-xl cursor-pointer active:bg-green-500 active:text-white text-xl bg-gray-100`}>{item.text}</h1>
+                                ))
+                            }
+
                         </div>
+
+
                     </div>
 
                     <button className="mt-6 text-xl bg-green-500 py-3 px-12 rounded-xl text-white active:scale-90">Buyurtma berish</button>
