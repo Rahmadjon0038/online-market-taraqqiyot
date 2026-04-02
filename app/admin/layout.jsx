@@ -1,4 +1,5 @@
 'use client'
+import AdminNav from "@/components/AdminNav"
 import { Grip, LogOut, PackageSearch, Settings, ShoppingCart } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
@@ -51,7 +52,8 @@ const layout = ({ children }) => {
                 <Link href={`/`} className="flex mt-4 gap-2 items-center font-bold  bg-white hover:bg-gray-100 p-3  transition-all  rounded-xl mb-4 "><LogOut /> Chiqih</Link>
 
             </div>
-            <div>
+            <div className="flex-1 bg-[#F9FAFB]">
+                <AdminNav/>
                 {children}
             </div>
         </div>
